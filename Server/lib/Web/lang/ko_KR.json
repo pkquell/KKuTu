@@ -1,7 +1,7 @@
 {
 	"GLOBAL": {
 		"GPL": "<div style='color: #666;'>글자로 놀자! 끄투 온라인 Copyright (C) 2017 JJoriping(op@jjo.kr)<br>이 프로그램은 제품에 대한 어떠한 형태의 보증도 제공되지 않습니다.<br>이 프로그램은 자유 소프트웨어이며 배포 규정을 만족시키는 조건 아래 자유롭게 재배포할 수 있습니다.<br>이에 대한 자세한 사항은 본 프로그램의 구현을 담은 다음 레포지토리에서 확인하십시오: <a target='_blank' href='https://github.com/JJoriping/KKuTu'>https://github.com/JJoriping/KKuTu</a></div>",
-
+		
 		"CREATOR":	"개발자 블로그",
 		"HOME":		"FA{home}",
 		"DB":		"쪼롤백과",
@@ -19,10 +19,11 @@
 		"SETTING":	"설정",
 		
 		"GLOBAL_NOTICE": "클릭하여 닫기",
-		"META_DESC": "리그 오브 레전드(League of Legends) 전적 검색 사이트 - 쪼롤에서 제공하는 통산 전적, 룬 및 특성, 승률, 그리고 찬란한 챔피언 통계 정보로 진정한 롤충이 되어 보세요!",
-		"META_KEYS": "league of legends,lol,리그 오브 레전드,롤,롤전적,전적검색,롤전적검색,전적,소환사,챔피언,롤충,쪼롤,jjo,jjoriping,jjo.kr",
-		"OG_TITLE": "쪼롤 - League of Legends 전적 검색 사이트",
-		"OG_DESC": "스마트하게 롤을 하고 싶다면 JJO.KR에서 놀자!",
+		
+		"OG_IMAGE": "http://kkutu.io/img/kkutu/logo.png",
+		"OG_URL": "http://kkutu.io/",
+		"OG_TITLE": "글자로 놀자! 끄투 온라인",
+		"OG_DESC": "끄투 온라인, 끝말잇기, 쿵쿵따, 초성퀴즈, 십자말풀이, 타자연습 사이트",
 	
 		"VERSION":	"버전",
 		"LEVEL":	"레벨",
@@ -116,7 +117,7 @@
 		"500_e": "예기치 못한 원인으로 내부 서버가 작동을 중지했습니다."
 	},
 	"login": {
-		"title": "쪼롤에 로그인",
+		"title": "끄투에 로그인",
 		"loginWith": "로그인 방법을 선택하세요.",
 		"withNaver": "네이버 아이디로 로그인",
 		"withFacebook": "페이스북 아이디로 로그인",
@@ -127,11 +128,11 @@
 		"loginLegal": "로그인이 이루어지면 JJO.KR이 공지하는 <a href='/legal/agreement' target='_blank'>서비스 이용 약관</a> 및 <a href='/legal/privacy' target='_blank'>개인정보 취급 방침</a>에 동의하게 됩니다."
 	},
 	"kkutu": {
-		"title": "글자로 놀자! 끄투 온라인",
+		"title": "[끄투리오] 글자로 놀자! 끄투 온라인",
 		"version": "2.5.0",
 		
-		"meta_desc": "온라인 끝말잇기, 앞말잇기, 자음퀴즈, 십자말풀이, 타자 대결까지! 끄투에서 어휘력의 제왕이 되어 보세요.",
-		"meta_keys": "쪼롤,jjo,jjo.kr,끄투,kkutu,끝말잇기,온라인,웹,쿵쿵따,영어끝말잇기,영어쿵쿵따,시리토리,끝말잇기사이트,자음퀴즈,초성퀴즈,자퀴,십자말풀이,가로세로,타자,타자연습,앞말잇기",
+		"meta_desc": "끄투 온라인, 끝말잇기, 쿵쿵따, 초성퀴즈, 십자말풀이, 타자연습 사이트",
+		"meta_keys": "끄투,kkutu,온라인,사이트,끝말잇기,쿵쿵따,초성퀴즈,십자말풀이,타자연습",
 		
 		"gameStart": "게임 시작!",
 		"serverList": "서버 목록",
