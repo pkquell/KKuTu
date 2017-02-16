@@ -16,5 +16,8 @@
     "electron": "^1.4.15",
     "electron-packager": "^8.5.1",
     "electron-pug": "^1.5.1"
+  },
+  "dependencies": {
+    "random-words": "0.0.1"
   }
 }
