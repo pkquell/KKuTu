@@ -249,7 +249,7 @@ function getAnswer(theme, nomean){
 		if(!len) return R.go(null);
 		do{
 			pick = Math.floor(Math.random() * len);
-			if($res[pick]._id.length >= 2) if($res[pick].type == "INJEONG" || $res[pick].mean.length >= 30){
+			if($res[pick]._id.length >= 2) {
 				return R.go($res[pick]);
 			}
 			$res.splice(pick, 1);
