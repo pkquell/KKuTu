@@ -150,6 +150,7 @@ exports.login = function(type, token, sid, token2){
 						$p.id = doc.sub;
 						$p.name = doc.name;
 						$p.image = doc.picture;
+						R.go($p);
 						
 						/* 망할 셧다운제
 
