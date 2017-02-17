@@ -21,6 +21,7 @@ var Cluster = require("cluster");
 var Const = require('../const');
 var Lizard = require('../sub/lizard');
 var JLog = require('../sub/jjlog');
+var words = require('random-words')(9999)
 // 망할 셧다운제 var Ajae = require("../sub/ajae");
 var DB;
 var SHOP;
@@ -1371,7 +1372,7 @@ function getGuestName(sid){
 	for(i=0; i<len; i++){
 		res += sid.charCodeAt(i) * (i+1);
 	}
-	return "GUEST" + (1000 + (res % 9000));
+	return "GUEST-" + words[(1000 + (res % 9000))];
 }
 function shuffle(arr){
 	var i, r = [];
