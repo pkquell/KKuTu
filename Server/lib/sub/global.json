@@ -1,8 +1,8 @@
 {
 	"ADMIN": [ "Input admin id here" ],
-	"MAIN_PORTS": [ 8080 ],
+	"PASS": [ "Your password for management Here" ],
+	"MAIN_PORTS": [ 8080, 8081, 8082, 8083 ],
 	"KKUTUHOT_PATH": "/kkutu/data/kkutuhot.json",
-	"PASS":"Your password for management Here",
 	"PG_PASS": "Your PostgreSQL Password Here",
 	"PG_PORT": 5432
 }
