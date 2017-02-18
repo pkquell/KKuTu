@@ -1,27 +1,9 @@
-/**
- * Rule the words! KKuTu Online
- * Copyright (C) 2017 JJoriping(op@jjo.kr)
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
 var GUEST_PERMISSION;
 var Cluster = require("cluster");
 var Const = require('../const');
 var Lizard = require('../sub/lizard');
 var JLog = require('../sub/jjlog');
-// 망할 셧다운제 var Ajae = require("../sub/ajae");
+var Ajae = require("../sub/ajae");
 var DB;
 var SHOP;
 var DIC;
@@ -47,7 +29,7 @@ exports.init = function(_DB, _DIC, _ROOM, _GUEST_PERMISSION, _CHAN){
 	GUEST_PERMISSION = _GUEST_PERMISSION;
 	CHAN = _CHAN;
 	_rid = 100;
-	// 망할 셧다운제 if(Cluster.isMaster) setInterval(exports.processAjae, 60000);
+	if(Cluster.isMaster) setInterval(exports.processAjae, 60000);
 	DB.kkutu_shop.find().on(function($shop){
 		SHOP = {};
 		
@@ -62,21 +44,19 @@ exports.init = function(_DB, _DIC, _ROOM, _GUEST_PERMISSION, _CHAN){
 		Rule[k].init(DB, DIC);
 	}
 };
-/* 망할 셧다운제
 exports.processAjae = function(){
 	var i;
 	
 	exports.NIGHT = (new Date()).getHours() < 6;
-	if(exports.NIGHT){
+	/*if(exports.NIGHT){
 		for(i in DIC){
 			if(!DIC[i].isAjae){
 				DIC[i].sendError(440);
 				DIC[i].socket.close();
 			}
 		}
-	}
+	}*/
 };
-*/
 exports.getUserList = function(){
 	var i, res = {};
 	
@@ -214,9 +194,8 @@ exports.Client = function(socket, profile, sid){
 	if(profile){
 		my.id = profile.id;
 		my.profile = profile;
-		/* 망할 셧다운제
 		if(Cluster.isMaster){
-			my.isAjae = Ajae.checkAjae(profile.birth, profile._age);
+			my.isAjae = true;//Ajae.checkAjae(profile.birth, profile._age);
 		}else{
 			my.isAjae = true;
 		}
@@ -224,10 +203,7 @@ exports.Client = function(socket, profile, sid){
 		my._age = profile._age;
 		delete my.profile.birth;
 		delete my.profile._age;
-		*/
-		delete my.profile.token;
-		delete my.profile.sid;
-
+		
 		if(my.profile.title) my.profile.name = "anonymous";
 	}else{
 		gp = guestProfiles[Math.floor(Math.random() * guestProfiles.length)];
@@ -291,7 +267,6 @@ exports.Client = function(socket, profile, sid){
 		
 		exports.onClientMessage(my, data);
 	});
-	/* 망할 셧다운제
 	my.confirmAjae = function(input){
 		if(Ajae.confirmAjae(input, my._birth, my._age)){
 			DB.users.update([ '_id', my.id ]).set([ 'birthday', input.join('-') ]).on(function(){
@@ -303,7 +278,6 @@ exports.Client = function(socket, profile, sid){
 			});
 		}
 	};
-	*/
 	my.getData = function(gaming){
 		var o = {
 			id: my.id,
@@ -421,7 +395,6 @@ exports.Client = function(socket, profile, sid){
 				black = false;
 				my.noChat = true;
 			}
-			/* 망할 셧다운제
 			if(Cluster.isMaster && !my.isAjae){ // null일 수는 없다.
 				my.isAjae = Ajae.checkAjae(($user.birthday || "").split('-'));
 				if(my.isAjae === null){
@@ -435,7 +408,7 @@ exports.Client = function(socket, profile, sid){
 						return;
 					}
 				}
-			}*/
+			}
 			my.exordial = $user.exordial || "";
 			my.equip = $user.equip || {};
 			my.box = $user.box || {};
@@ -449,7 +422,7 @@ exports.Client = function(socket, profile, sid){
 			}
 			if(black) R.go({ result: 444, black: black });
 			else if(Cluster.isMaster && $user.server) R.go({ result: 409, black: $user.server });
-			else if(exports.NIGHT && my.isAjae === false) R.go({ result: 440 });
+			//else if(exports.NIGHT && my.isAjae === false) {R.go({ result: 440 });}
 			else R.go({ result: 200 });
 		});
 		return R;
