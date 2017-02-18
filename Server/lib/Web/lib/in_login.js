@@ -1,21 +1,3 @@
-/**
- * Rule the words! KKuTu Online
- * Copyright (C) 2017 JJoriping(op@jjo.kr)
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
 (function(){
 	$(document).ready(function(){
 		var fbStatus;
@@ -47,8 +29,8 @@
 			var url = "https://nid.naver.com/oauth2.0/authorize?";
 			
 			url += "response_type=code&";
-			url += "client_id=????????????????&";
-			url += "redirect_uri="+encodeURI("http://kkutu.kr")+"&";
+			url += "client_id=?????????????&";
+			url += "redirect_uri="+encodeURI("http://kkutu.io")+"&";
 			url += "state="+encodeURI($("#stateKey").html())+"&";
 			
 			redirect(url);
@@ -76,7 +58,7 @@
 					}else{
 						history.back();
 					}
-				}, { scope: "user_birthday" });
+				});
 			}
 		});
 		$("#with-google").on('click', function(e){
