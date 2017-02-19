@@ -14,7 +14,7 @@ block Middle
 	+separator(5)
 	div(style='margin-left: calc(50% - 170px);')
 		div(style='float: left; padding-left: 70px;')
-			h3#holder= L('title')
+			h3#holder= L('title').replace(/\[.+?\]/g, "")
 			img#logo(src='/img/kkutu/short_logo.png')
 		div.jjoriping(style='margin-top: 10px;')
 			img.jjoObj.jjoEyeL(src='/img/jjoeyeL.png', style='top: 40px; left: -270px;')
