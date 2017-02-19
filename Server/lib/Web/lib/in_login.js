@@ -58,7 +58,7 @@
 					}else{
 						history.back();
 					}
-				});
+				}, { scope: "user_birthday" });
 			}
 		});
 		$("#with-google").on('click', function(e){
