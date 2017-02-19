@@ -232,7 +232,7 @@ iframe{
 	height: 255px;
 }
 	.RoomListBox div{ float: left; }
-	.RoomListBox .product-body{ width: calc(100% - 10px); height: 330px; overflow-x: hidden; overflow-y: scroll; }
+	.RoomListBox .product-body{ width: calc(100% - 10px); height: 223px; overflow-x: hidden; overflow-y: scroll; }
 	.rooms-item{
 		padding: 2px;
 		border-radius: 10px;
