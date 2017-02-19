@@ -298,11 +298,11 @@ exports.init = function(_SID, CHAN){
 						$c.socket.close();
 						return;
 					}
-					/*if(KKuTu.NIGHT){
+					if(KKuTu.NIGHT){
 						$c.sendError(440);
 						$c.socket.close();
 						return;
-					}*/
+					}
 				}
 				if($c.isAjae === null){
 					$c.sendError(441);
