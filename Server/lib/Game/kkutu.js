@@ -48,14 +48,14 @@ exports.processAjae = function(){
 	var i;
 	
 	exports.NIGHT = (new Date()).getHours() < 6;
-	/*if(exports.NIGHT){
+	if(exports.NIGHT){
 		for(i in DIC){
 			if(!DIC[i].isAjae){
 				DIC[i].sendError(440);
 				DIC[i].socket.close();
 			}
 		}
-	}*/
+	}
 };
 exports.getUserList = function(){
 	var i, res = {};
