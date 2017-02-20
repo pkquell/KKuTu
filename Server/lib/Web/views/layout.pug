@@ -65,9 +65,6 @@ html
 		div#Bottom
 			block Bottom
 			div.bottom-legal
-				if locals.as_pc
-					a(href='?')= L('AS_MOBILE')
-					br
 				a(href='/agreement.html', target='_blank')= L('AGREEMENT')
 				a(href='/privacy.html', target='_blank')= L('PRIVACY')
 			div.bottom-legal!= L('GPL')
