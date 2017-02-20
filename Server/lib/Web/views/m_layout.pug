@@ -23,7 +23,7 @@ html
 	head
 		block Subject
 		meta(charset='utf-8')
-		meta(name='viewport', content='width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 		script(type='text/javascript').
 			function getObject(v, i){
 				Object.defineProperty(v, i, { value: v[i], writable: false });
@@ -65,5 +65,8 @@ html
 			block Bottom
 			div.bottom-legal
 				a(href='?pc=true')= L('AS_PC')
+				br
+				a(href='/agreement.html', target='_blank')= L('AGREEMENT')
+				a(href='/privacy.html', target='_blank')= L('PRIVACY')
 			div.bottom-legal!= L('GPL')
 			+separator(40)
