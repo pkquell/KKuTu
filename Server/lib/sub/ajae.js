@@ -17,9 +17,34 @@
  */
 
 // 망할 셧다운제
-exports.checkAjae = function(birth, age){
-	return true;
+exports.checkAjae = function(birth, ageRange){
+	var now = new Date();
+	var YEAR = now.getFullYear(), MONTH = now.getMonth() + 1, DATE = now.getDate();
+	var age;
+	
+	if(birth && birth[2]){
+		age = YEAR - birth[2];
+		if(MONTH < birth[0]) age--;
+		else if(MONTH == birth[0] && DATE < birth[1]) age--;
+		
+		return age >= 16;
+	}else if(ageRange){
+		return ageRange.min >= 16;
+	}else return null;
 };
-exports.confirmAjae = function(input, birth, age){
-	return true;
+exports.confirmAjae = function(input, birth, ageRange){
+	// input는 [ M, D, Y ] 꼴이다.
+	// ageRange가 존재한다는 것이 보장되어야 한다.
+	if(!input) return false;
+	
+	var y = input[2], m = input[0], d = input[1];
+	var now = new Date();
+	var YEAR = now.getFullYear();
+	var yearExp = {
+		min: YEAR - ageRange.max - 1,
+		max: YEAR - (ageRange.min || 0)
+	};
+	console.log(input, birth, ageRange);
+	
+	return yearExp.min <= y && y <= yearExp.max && birth[0] == m && birth[1] == d && (!birth[2] || birth[2] == y);
 };
