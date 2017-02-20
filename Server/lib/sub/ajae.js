@@ -18,7 +18,7 @@
 
 // 망할 셧다운제
 exports.checkAjae = function(birth, age){
-	return false;
+	return true;
 };
 exports.confirmAjae = function(input, birth, age){
 	return true;
