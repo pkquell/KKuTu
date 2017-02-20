@@ -26,7 +26,7 @@ const GOOGLE_SECRET = "Google App Secret";
 var Web		 = require("request");
 var Lizard	 = require("../sub/lizard");
 var JLog	 = require("../sub/jjlog");
-// var Ajae	 = require("../sub/ajae").checkAjae;
+var Ajae	 = require("../sub/ajae").checkAjae;
 
 exports.login = function(type, token, sid, token2){
 	var R = new Lizard.Tail();
@@ -64,7 +64,7 @@ exports.login = function(type, token, sid, token2){
 						$p.title = doc.response.nickname;
 						$p.image = doc.response.profile_image;
 						
-						/* 망할 셧다운제
+						// 망할 셧다운제
 						$p._age = doc.response.age.split('-').map(Number);
 						$p._age = { min: ($p._age[0] || 0) - 1, max: $p._age[1] - 1 };
 						$p.birth = doc.response.birthday.split('-').map(Number);
@@ -73,7 +73,6 @@ exports.login = function(type, token, sid, token2){
 							$p._age.max--;
 						}
 						$p.isAjae = Ajae($p.birth, $p._age);
-						*/
 						// $p.sex = doc.response[0].gender[0];
 						R.go($p);
 					}else{
@@ -102,14 +101,12 @@ exports.login = function(type, token, sid, token2){
 				$p.name = doc.name;
 				$p.image = "https://graph.facebook.com/"+doc.id+"/picture?type=large";
 				
-				/* 망할 셧다운제
-				
+				// 망할 셧다운제
 				$p._age = doc.age_range;
 				if(doc.birthday){
 					$p.birth = doc.birthday.split('/').map(Number);
 				}
 				$p.isAjae = Ajae($p.birth, $p._age);
-				*/
 				// $p.sex = doc.gender[0].toUpperCase();
 				R.go($p);
 			}
@@ -151,9 +148,7 @@ exports.login = function(type, token, sid, token2){
 						$p.name = doc.name;
 						$p.image = doc.picture;
 						
-						R.go($p);
-						/* 망할 셧다운제
-
+						// 망할 셧다운제
 						$p._age = _doc.ageRange;
 						if(_doc.birthday){
 							$p.birth = _doc.birthday.split('-').map(Number);
@@ -161,7 +156,7 @@ exports.login = function(type, token, sid, token2){
 						}
 						$p.isAjae = Ajae($p.birth, $p._age);
 						R.go($p);
-					}
+					/*}
 				});*/
 			}
 		});
