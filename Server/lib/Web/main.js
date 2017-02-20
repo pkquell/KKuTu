@@ -53,10 +53,12 @@ Server.set('view engine', "pug");
 Server.use(Express.static(__dirname + "/public"));
 Server.use(Parser.urlencoded({ extended: true }));
 Server.use(Exession({
+	/* use only for redis-installed
+	
 	store: new Redission({
 		client: Redis.createClient(),
 		ttl: 3600 * 12
-	}),
+	}),*/
 	secret: 'kkutu',
 	resave: false,
 	saveUninitialized: true
