@@ -149,9 +149,9 @@ exports.login = function(type, token, sid, token2){
 						$p.image = doc.picture;
 						
 						// 망할 셧다운제
-						$p._age = _doc.ageRange;
-						if(_doc.birthday){
-							$p.birth = _doc.birthday.split('-').map(Number);
+						$p._age = doc.ageRange;
+						if(doc.birthday){
+							$p.birth = doc.birthday.split('-').map(Number);
 							$p.birth.push($p.birth.shift());
 						}
 						$p.isAjae = Ajae($p.birth, $p._age);
