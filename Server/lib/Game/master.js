@@ -82,6 +82,11 @@ function processAdmin(id, value){
 				temp.socket.close();
 			}
 			return null;
+		case "ip":
+			if(temp = DIC[value]){
+				if(DIC[id]) DIC[id].send('tail', { a: "ip", rid: temp.id, id: id, msg: temp.socket.request.connection.remoteAddress });
+			}
+			return null;
 		case "tailroom":
 			if(temp = ROOM[value]){
 				if(T_ROOM[value] == id){
