@@ -18,25 +18,25 @@
 
 window.fbAsyncInit = function() {
 	FB.init({
-		appId: '?????????????????',
+		appId: '??????????????',
 		xfbml: true,
 		version: 'v2.8'
 	});
-	/*
-	document.getElementById("ui-share-button").addEventListener("click", function() {
-		FB.ui({
-			method: 'share',
-			href: 'http://kkutu.io/',
-		},
-		function(response) {
-			if (response && !response.error_message) {
-				console.log('Posting completed.');
-			} else {
-				console.log('Error while posting.');
-			}
+	if (document.getElementById("facebook-menu")) {
+		document.getElementById("facebook-menu").addEventListener("click", function() {
+			FB.ui({
+				method: 'share',
+				href: 'http://kkutu.io',
+			},
+			function(response) {
+				if (response && !response.error_message) {
+					console.log('Posting completed.');
+				} else {
+					console.log('Error while posting.');
+				}
+			});
 		});
-	});
-	*/
+	}
 };
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
