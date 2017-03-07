@@ -68,6 +68,24 @@ equ{
 
 #facebook-menu{
 	float: right;
+	width: auto;
+	height: 20px;
+	background: #4267B2;
+	border: 1px solid #4267B2;
+	border-radius: 3px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0 0 0 2px;
+	cursor: pointer;
+	transition: none;
+}
+#facebook-menu:hover{
+	background: #365899;
+	border: 1px solid #365899;
+}
+#facebook-menu:active{
+	background: #577FBC;
+	border: 1px solid #577FBC;
 }
 iframe{
 	border: none;
