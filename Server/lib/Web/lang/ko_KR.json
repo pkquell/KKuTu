@@ -1,6 +1,8 @@
 {
 	"GLOBAL": {
-		"GPL": "<div style='color: #666;'>글자로 놀자! 끄투 온라인 Copyright (C) 2017 kkutu.io(ljs970624@gmail.com)<br>이 프로그램은 제품에 대한 어떠한 형태의 보증도 제공되지 않습니다.<br>이 프로그램은 자유 소프트웨어이며 배포 규정을 만족시키는 조건 아래 자유롭게 재배포할 수 있습니다.<br>이에 대한 자세한 사항은 본 프로그램의 구현을 담은 다음 레포지토리에서 확인하십시오: <a target='_blank' href='https://github.com/ljs970624/KKuTu'>https://github.com/ljs970624/KKuTu</a></div>",
+		"Copyright": "<a href='/agreement.html' target='_blank'>서비스 이용 약관</a><a href='/privacy.html' target='_blank'>개인정보 취급 방침</a><br><label style='color: #777777;'>글자로 놀자! 끄투 온라인 Copyright (C) 2017 kkutu.io(ljs970624@gmail.com)</label>",
+		"Dictionary": "사전 정보 제공:<a href='http://wordnet.princeton.edu' target='_blank'>WordNet</a><br><label style='color: #777777;'>WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.</label>",
+		"License": "<label style='color: #666;'>본 소프트웨어는 어떠한 형태의 보증도 제공되지 않는 자유 소프트웨어이며 배포 규정을 만족시키는 조건 아래 자유롭게 재배포할 수 있습니다.<br>이에 대한 자세한 사항은 본 소프트웨어의 구현을 담은 다음 레포지토리에서 확인하십시오: <a target='_blank' href='https://github.com/ljs970624/KKuTu'>https://github.com/ljs970624/KKuTu</a></label>",
 		
 		"CREATOR":	"개발자 블로그",
 		"HOME":		"FA{home}",
