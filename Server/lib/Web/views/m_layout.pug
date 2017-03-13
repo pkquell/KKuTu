@@ -52,7 +52,7 @@ html
 			+MMenu()
 			div#global-notice
 				div#gn-content
-					include ../public/global_notice.html
+					include ../public/kkutu_head.html
 			block Top
 		div#Jungle
 			span#mobile= locals.mobile
@@ -63,8 +63,4 @@ html
 			block Middle
 		div#Bottom
 			block Bottom
-			div.bottom-legal
-				a(href='/agreement.html', target='_blank')= L('AGREEMENT')
-				a(href='/privacy.html', target='_blank')= L('PRIVACY')
-			div.bottom-legal!= L('GPL')
 			+separator(10)
