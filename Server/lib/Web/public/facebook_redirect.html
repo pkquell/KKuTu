@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function redirect(to){
+	$.post("/session/set", { bm: $.cookie('bm') }, function(res){
+		$.cookie('prevpage', document.referrer);
+		location.href = to;
+	});
+}
+function getHashValue(key) {
+	var matches = location.hash.match(new RegExp(key+'=([^&]*)'));
+	return matches ? matches[1] : null;
+}
+redirect("/?token=" + getHashValue('access_token'));
+</script>
+</body>
+</html>
