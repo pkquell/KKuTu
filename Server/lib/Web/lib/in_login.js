@@ -70,19 +70,26 @@
 			if(fbStatus.status == "connected"){
 				redirect("/?token="+fbStatus.authResponse.accessToken);
 			}else{
-				/*FB.login(function(res){
-					if(res.authResponse){
-						redirect("/?token="+res.authResponse.accessToken);
-					}else{
-						history.back();
-					}
-				}, { scope: "user_birthday" });*/
-				location.href = "https://www.facebook.com/dialog/oauth?client_id=444697495921396&redirect_uri=" + encodeURI('http://kkutu.io/facebook_redirect.html') + "&scope=user_birthday&response_type=token";
+				if ($.cookie("isapp") == "1") {
+					location.href = "https://www.facebook.com/dialog/oauth?client_id=????????????????&redirect_uri=" + encodeURI('http://kkutu.io/facebook_redirect.html') + "&scope=user_birthday&response_type=token";
+				} else {
+					FB.login(function(res){
+						if(res.authResponse){
+							redirect("/?token="+res.authResponse.accessToken);
+						}else{
+							history.back();
+						}
+					}, { scope: "user_birthday" });
+				}
 			}
 		});
-		$("#with-google").on('click', function(e){
-			ggStatus = true;
-		});
+		if ($.cookie("isapp") == "1") {
+			$("#with-google").css("display", "none");
+		} else {
+			$("#with-google").on('click', function(e){
+				ggStatus = true;
+			});
+		}
 		function gOK(user){
 			if(!ggStatus) return;
 			var ar = user.getAuthResponse(true);
