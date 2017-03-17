@@ -70,13 +70,14 @@
 			if(fbStatus.status == "connected"){
 				redirect("/?token="+fbStatus.authResponse.accessToken);
 			}else{
-				FB.login(function(res){
+				/*FB.login(function(res){
 					if(res.authResponse){
 						redirect("/?token="+res.authResponse.accessToken);
 					}else{
 						history.back();
 					}
-				}, { scope: "user_birthday" });
+				}, { scope: "user_birthday" });*/
+				location.href = "https://www.facebook.com/dialog/oauth?client_id=444697495921396&redirect_uri=" + encodeURI('http://kkutu.io/facebook_redirect.html') + "&scope=user_birthday&response_type=token";
 			}
 		});
 		$("#with-google").on('click', function(e){
