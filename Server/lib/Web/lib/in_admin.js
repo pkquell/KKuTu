@@ -52,7 +52,7 @@
 					$table.append($r = $("<tr>").attr('id', ['ir', item._id.replace(/ /g, "-")].join('-')));
 					$r
 						.append($("<td>").append(putter("ij-" + item._id + "-check", 'y').attr('type', "checkbox")))
-						.append($("<td>").append($("<a>").attr({ 'target': "_blank", 'href': "https://namu.moe/w/" + encodeURI(item._id) }).html("이동")))
+						.append($("<td>").append($("<a>").attr({ 'target': "_blank", 'href': "https://namu.wiki/w/" + encodeURI(item._id) }).html("이동")))
 						.append($("<td>").append(putter("ij-" + item._id + "-_id", 'l', item._id)))
 						.append($("<td>").append(putter("ij-" + item._id + "-theme", 'g', item.theme)))
 						.append($("<td>").append(putter("ij-" + item._id + "-writer", 'g', item.writer)))
