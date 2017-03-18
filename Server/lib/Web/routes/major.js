@@ -100,7 +100,7 @@ Server.get("/injeong/:word", function(req, res){
 				if($ij.theme == '~') return res.send({ error: 406 });
 				else return res.send({ error: 403 });
 			}
-			Web.get("https://namu.moe/w/" + encodeURI(word), function(err, _res){
+			Web.get("https://namu.wiki/w/" + encodeURI(word), function(err, _res){
 				if(err) return res.send({ error: 400 });
 				else if(_res.statusCode != 200) return res.send({ error: 405 });
 				MainDB.kkutu_injeong.insert([ '_id', word ], [ 'theme', theme ], [ 'createdAt', now ], [ 'writer', req.session.profile.id ]).on(function($res){
