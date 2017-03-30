@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="margin:0;">
+
+<style type="text/css">
+body, html{height:100%}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$.cookie('isapp', '1');
+	if (location.search.substr(3) < 4) {
+		$("table").show();
+	} else {
+		location.href='/';
+	}
+});
+</script>
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="0" style="height:100%;display:none;">
+<tr height="50" bgcolor="#7CC4F8">
+	<td align="center" valign="middle" style="font:bold 22px 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#FFFFFF;">업데이트가 필요합니다</td>
+</tr>
+<tr>
+	<td align="left" valign="top" style="padding:5px;font:normal 14px 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#777777;">
+	필수 업데이트가 있습니다.<br>
+	<br>
+	업데이트 버전: 1.2.1<br>
+	업데이트 날짜: 2017. 3. 30<br>
+	<br>
+	최신 버전으로 업데이트해주세요.
+	</td>
+</tr>
+<tr height="60">
+	<td style="padding:5px;"><a class="btn btn-block btn-success btn-lg" role="button" href="market://details?id=io.kkutu.kkutu" target="_blank" style="height:50px;">업데이트</a></td>
+</tr>
+</table>
+
+</body>
+</html>
