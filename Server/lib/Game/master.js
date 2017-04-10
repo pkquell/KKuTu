@@ -316,22 +316,22 @@ exports.init = function(_SID, CHAN){
 					return;
 				}
 				if($c.guest){
-					if(SID == "4"){
+					if(SID == "0"){
 						$c.sendError(402);
 						$c.socket.close();
 						return;
 					}
-					if(KKuTu.NIGHT){
+					/*if(KKuTu.NIGHT){
 						$c.sendError(440);
 						$c.socket.close();
 						return;
-					}
+					}*/
 				}
-				if($c.isAjae === null){
+				/*if($c.isAjae === null){
 					$c.sendError(441);
 					$c.socket.close();
 					return;
-				}
+				}*/
 				$c.refresh().then(function(ref){
 					if(ref.result == 200){
 						DIC[$c.id] = $c;
@@ -506,10 +506,10 @@ KKuTu.onClientMessage = function($c, msg){
 			if(!$c._checkAjae) return;
 			clearTimeout($c._checkAjae);
 			if(msg.answer == "yes") $c.confirmAjae(msg.input);
-			else if(KKuTu.NIGHT){
+			/*else if(KKuTu.NIGHT){
 				$c.sendError(440);
 				$c.socket.close();
-			}
+			}*/
 			break;
 		case 'test':
 			checkTailUser($c.id, $c.place, msg);
