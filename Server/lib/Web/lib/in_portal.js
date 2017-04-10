@@ -37,17 +37,15 @@
 		$stage.start.prop('disabled', true).on('click', function(e){
 			var i, j;
 			
-			if($("#account-info").html() == L['LOGIN']){
-				return $("#server-0").trigger('click');
-			}
 			for(i=0.9; i<1; i+=0.01){
 				for(j in LIST){
+					if(j == 0 && $("#account-info").html() == L['LOGIN']) continue;
 					if(LIST[j] < i * LIMIT){
-						$("#server-" + j).trigger('click');
-						return;
+						return $("#server-" + j).trigger('click');
 					}
 				}
 			}
+			return alert(L['error_full']);
 		});
 		$stage.ref.on('click', function(e){
 			if($stage.refi.hasClass("fa-spin")){
