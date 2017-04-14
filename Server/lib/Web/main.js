@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
- var WS		 = require("ws");
+
+var WS		 = require("ws");
 var Express	 = require("express");
 var Exession = require("express-session");
 var Redission= require("connect-redis")(Exession);
@@ -268,14 +268,17 @@ Server.get("/register", function(req, res){
 		
 		$profile.sid = req.session.id;
 		req.session.admin = GLOBAL.ADMIN.includes($profile.id);
-		DB.session.upsert([ '_id', req.session.id ]).set({
-			'profile': $profile,
-			'createdAt': now
-		}).on();
 		DB.users.findOne([ '_id', $profile.id ]).on(function($body){
-			req.session.profile = $profile;
-			res.redirect("/");
+			if($body && $body.nickname){
+				$profile.title = $body.nickname;
+			}
 			DB.users.update([ '_id', $profile.id ]).set([ 'lastLogin', now ]).on();
+			DB.session.upsert([ '_id', req.session.id ]).set({
+				'profile': $profile,
+				'createdAt': now
+			}).on(function($ses){
+				res.redirect("/");
+			});
 		});
 	});
 });
