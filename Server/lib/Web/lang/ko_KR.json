@@ -132,7 +132,7 @@
 	},
 	"kkutu": {
 		"title": "[끄투리오] 글자로 놀자! 끄투 온라인",
-		"version": "2.5.1",
+		"version": "2.5.2",
 		
 		"meta_desc": "끄투 온라인, 끝말잇기, 쿵쿵따, 초성퀴즈, 십자말풀이, 타자연습 사이트",
 		"meta_keys": "끄투,kkutu,온라인,사이트,끝말잇기,쿵쿵따,초성퀴즈,십자말풀이,타자연습",
@@ -328,7 +328,7 @@
 		"optManner": "매너",
 		"explManner": "한방 단어를 사용할 수 없게 합니다.",
 		"optSafe": "안전",
-		"explSafe": "칠 단어가 없으면 턴을 넘기지 못해도 점수가 감점되지 않습니다.",
+		"explSafe": "입력할 수 있는 단어가 없으면 턴을 넘기지 못해도 점수가 감점되지 않습니다.",
 		"optInjeong": "어인정",
 		"explInjeong": "특수한 단어의 사용을 인정합니다.",
 		"optMission": "미션",
@@ -544,7 +544,10 @@
 		"dress": "프로필 관리",
 		"myExordial": "소개 한마디",
 		"myExordialX": "100글자 이내",
+		"myNickname": "닉네임",
+		"myNicknameX": "20글자 이내, 한글/영문/숫자/-/_/띄어쓰기 사용 가능",
 		"myMoremi": "내 모레미",
+		"profileChanged": "프로필 정보가 수정되었습니다. 새로고침 시 적용됩니다.",
 		"category_all": "전체",
 		"category_spec": "특수",
 		"category_skin": "스킨",
