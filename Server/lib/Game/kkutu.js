@@ -335,8 +335,10 @@ exports.Client = function(socket, profile, sid){
 	my.publish = function(type, data, noBlock){
 		var i;
 		var now = new Date();
+		var $room = ROOM[my.place];
 		
-		if (type == 'chat') {
+		// 채팅 도배 차단
+		if (type == 'chat' && !my.subPlace && (!$room || !$room.gaming || $room.game.seq.indexOf(my.id) == -1)) {
 			var stChat = now - my._pubChat;
 			if(stChat <= Const.CHAT_SPAM_ADD_DELAY) my.spamChat++;
 			else if(stChat >= Const.CHAT_SPAM_CLEAR_DELAY) my.spamChat = 0;
@@ -356,6 +358,7 @@ exports.Client = function(socket, profile, sid){
 					}else my.blockedChat = false;
 				}
 			}
+		// 패킷 도배 차단
 		} else {
 			var st = now - my._pub;
 			if(st <= Const.SPAM_ADD_DELAY) my.spam++;
