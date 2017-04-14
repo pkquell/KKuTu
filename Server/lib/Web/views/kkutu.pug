@@ -37,6 +37,9 @@ mixin SettingOption(id, text, st)
 		input(id=id, type='checkbox', style='margin-top: 5px; width: auto;')
 		label(for=id)= text
 
+mixin SettingOptionVolume(id)
+	input(id=id, type='range', min='0', max='1', step='0.01', value='1', style='width:50%;')
+
 block Subject
 	title= L('title')
 
@@ -95,11 +98,13 @@ block Middle
 				svg(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 16 16', style='width: 16px; height: 16px;')
 					path(fill='#FFFFFF', fill-rule='evenodd', d='M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z')
 			span(style='display: inline-block; vertical-align: middle; font-weight: bold; font-size: 11px; font-family: Helvetica, Arial, sans-serif; color: #FFFFFF; padding: 0 4px 0 4px;') 공유
-	+Dialog('SettingDiag', 300, 240, L('settingsText'))
+	+Dialog('SettingDiag', 300, 290, L('settingsText'))
 		div.dialog-bar
-			h4= L('mute')
-			+SettingOption('mute-bgm', L('bgm'))
-			+SettingOption('mute-effect', L('effect'))
+			h4= L('bgm')
+			+SettingOptionVolume('volume-bgm')
+		div.dialog-bar
+			h4= L('effect')
+			+SettingOptionVolume('volume-effect')
 		div.dialog-bar
 			h4= L('denyReq')
 			+SettingOption('deny-invite', L('denyInvite'))
@@ -352,7 +357,10 @@ block Middle
 			h4.dialog-bar-value#replay-players -
 		div.dialog-bar.tail-button
 			button#replay-view= L('replayView')
-	+Dialog('DressDiag', 600, 280, L('dress'))
+	+Dialog('DressDiag', 600, 305, L('dress'))
+		div.dialog-bar
+			h4(style='width: 150px;')= L('myNickname')
+			input#dress-nickname(type='textfield', placeholder=L('myNicknameX'), style='width: 435px;', maxlength=30)
 		div.dialog-bar
 			h4(style='width: 150px;')= L('myExordial')
 			input#dress-exordial(type='textfield', placeholder=L('myExordialX'), style='width: 435px;', maxlength=100)
@@ -456,7 +464,7 @@ block Middle
 		button#ChatBtn= L('send')
 	+Product('AD')
 		script(async, src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-		ins.adsbygoogle(style="display:inline-block;width:728px;height:90px", data-ad-client="ca-pub-?????????????????", data-ad-slot="??????????")
+		ins.adsbygoogle(style="display:inline-block;width:728px;height:90px", data-ad-client="ca-pub-6586021537633126", data-ad-slot="5863772490")
 		script (adsbygoogle = window.adsbygoogle || []).push({});
 
 block Bottom
