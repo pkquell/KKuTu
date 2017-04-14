@@ -37,6 +37,9 @@ mixin SettingOption(id, text, st)
 		input(id=id, type='checkbox', style='margin-top: 5px; width: auto;')
 		label(for=id)= text
 
+mixin SettingOptionVolume(id)
+	input(id=id, type='range', min='0', max='1', step='0.01', value='1', style='width:50%;')
+
 block Subject
 	title= L('title')
 	
@@ -88,11 +91,13 @@ block Middle
 		button#ExitBtn.for-master.for-normal.for-gaming(style='display: none; background-color: #FFADAD;'): +FA('times')
 		button#ReplayBtn.for-lobby(style='display: none; background-color: #D9FF82;'): +FA('video-camera')
 		button#LeaderboardBtn.for-lobby(style='display: none; background-color: #FFADD3;'): +FA('trophy')
-	+Dialog('SettingDiag', 300, 240, L('settingsText'))
+	+Dialog('SettingDiag', 300, 290, L('settingsText'))
 		div.dialog-bar
-			h4= L('mute')
-			+SettingOption('mute-bgm', L('bgm'))
-			+SettingOption('mute-effect', L('effect'))
+			h4= L('bgm')
+			+SettingOptionVolume('volume-bgm')
+		div.dialog-bar
+			h4= L('effect')
+			+SettingOptionVolume('volume-effect')
 		div.dialog-bar
 			h4= L('denyReq')
 			+SettingOption('deny-invite', L('denyInvite'))
