@@ -137,6 +137,9 @@ span{
 	padding-top: 8px;
 	width: 80px;
 	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 	cursor: pointer;
 	transition: color 300ms ease;
 }
