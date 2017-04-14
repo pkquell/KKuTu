@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
- var spamWarning = 0;
+
+var spamWarning = 0;
 var spamCount = 0;
 // var smile = 94, tag = 35;
 
@@ -64,11 +64,11 @@ function showDialog($d, noToggle){
 function applyOptions(opt){
 	$data.opts = opt;
 	
-	$data.muteBGM = $data.opts.mb;
-	$data.muteEff = $data.opts.me;
+	$data.muteBGM = $data.opts.vb == 0;
+	$data.muteEff = $data.opts.ve == 0;
 	
-	$("#mute-bgm").attr('checked', $data.muteBGM);
-	$("#mute-effect").attr('checked', $data.muteEff);
+	$("#volume-bgm").val($data.opts.vb);
+	$("#volume-effect").val($data.opts.ve);
 	$("#deny-invite").attr('checked', $data.opts.di);
 	$("#deny-whisper").attr('checked', $data.opts.dw);
 	$("#deny-friend").attr('checked', $data.opts.df);
@@ -79,10 +79,8 @@ function applyOptions(opt){
 	
 	if($data.bgm){
 		if($data.muteBGM){
-			$data.bgm.volume = 0;
 			$data.bgm.stop();
 		}else{
-			$data.bgm.volume = 1;
 			$data.bgm = playBGM($data.bgm.key, true);
 		}
 	}
@@ -1000,7 +998,7 @@ function roomListBar(o){
 	.append($("<div>").addClass("rooms-title ellipse").text(badWords(o.title)))
 	.append($("<div>").addClass("rooms-limit").html(o.players.length + " / " + o.limit))
 	.append($("<div>").width(270)
-		.append($("<div>").addClass("rooms-mode").html(opts.join(" / ").toString()))
+		.append($("<div>").addClass("rooms-mode ellipse").html(opts.join(" / ").toString()))
 		.append($("<div>").addClass("rooms-round").html(L['rounds'] + " " + o.round))
 		.append($("<div>").addClass("rooms-time").html(o.time + L['SECOND']))
 	)
@@ -1228,6 +1226,7 @@ function drawMyDress(avGroup){
 	renderMoremi($view, my.equip);
 	$(".dress-type.selected").removeClass("selected");
 	$("#dress-type-all").addClass("selected");
+	$("#dress-nickname").val(my.profile.title || my.profile.name);
 	$("#dress-exordial").val(my.exordial);
 	drawMyGoods(avGroup || true);
 }
@@ -2016,6 +2015,7 @@ function roundEnd(result, data){
 		$data._result._bonus = addit;
 		$data._result._boing = $data._result.reward._score;
 		$data._result._addit = addit;
+
 		$data._result._addp = addp;
 		
 		if(addit > 0){
@@ -2591,6 +2591,7 @@ function stopBGM(){
 function playSound(key, loop){
 	var src, sound;
 	var mute = (loop && $data.muteBGM) || (!loop && $data.muteEff);
+	var volume = loop ? ($data.opts.vb ? $data.opts.vb : 1) : ($data.opts.ve ? $data.opts.ve : 1);
 	
 	sound = $sound[key] || $sound.missing;
 	if(window.hasOwnProperty("AudioBuffer") && sound instanceof AudioBuffer){
@@ -2601,12 +2602,18 @@ function playSound(key, loop){
 			src.buffer = audioContext.createBuffer(2, sound.length, audioContext.sampleRate);
 		}else{
 			src.buffer = sound;
+			var gainNode = typeof(audioContext.createGain) == "function" ? audioContext.createGain() : null;
+			if(gainNode){
+				gainNode.gain.value = Number(volume) - 1;
+				gainNode.connect(audioContext.destination);
+				src.connect(gainNode);
+			}
 		}
 		src.connect(audioContext.destination);
 	}else{
 		if(sound.readyState) sound.audio.currentTime = 0;
 		sound.audio.loop = loop || false;
-		sound.audio.volume = mute ? 0 : 1;
+		sound.audio.volume = volume;
 		src = sound;
 	}
 	if($_sound[key]) $_sound[key].stop();
