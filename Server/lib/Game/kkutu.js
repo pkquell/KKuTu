@@ -533,7 +533,7 @@ exports.Client = function(socket, profile, sid){
 					return my.sendError(401);
 				}
 			}
-			if($room.players.length >= $room.limit + (spec ? Const.MAX_OBSERVER : 0)){
+			if($room.players.length >= $room.limit + (spec && $room.gaming ? Const.MAX_OBSERVER : 0)){
 				return my.sendError(429);
 			}
 			if($room.players.indexOf(my.id) != -1){
