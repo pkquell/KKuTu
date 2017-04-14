@@ -790,7 +790,7 @@ $(document).ready(function(){
 		$.post("/exordial", { data: $("#dress-exordial").val(), nick: $("#dress-nickname").val() }, function(res){
 			$stage.dialog.dressOK.attr('disabled', false);
 			if(res.error) return fail(res.error);
-			if ($("#dress-nickname").val() != ($data.users[$data.id].profile.title && $data.users[$data.id].profile.name) || $("#dress-exordial").val() != $data.users[$data.id].exordial) {
+			if (($("#dress-nickname").val() != $data.users[$data.id].profile.title && $("#dress-nickname").val() != $data.users[$data.id].profile.name) || $("#dress-exordial").val() != $data.users[$data.id].exordial) {
 				alert(L['profileChanged']);
 			}
 			
