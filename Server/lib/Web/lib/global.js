@@ -161,13 +161,14 @@ var L;
 			location.href = "/logout";
 			return;
 		}*/
-		if(global.profile.type == "facebook") FB.getLoginStatus(function(res){
+		/*if(global.profile.type == "facebook") FB.getLoginStatus(function(res){
 			if(res.status == "connected") FB.logout(function(res){
 				location.href = "/logout";
 			});
 			else location.href = "/logout";
 		});
-		else location.href = "/logout";
+		else location.href = "/logout";*/
+		location.href = "/logout";
 	}
 	function onWatchInput($o, prev){
 		var cid = $o.attr('id');
