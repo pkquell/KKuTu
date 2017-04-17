@@ -312,7 +312,7 @@ iframe{
 		.room-head-modified{ animation: ModifiedBlink 1s ease 3; }
 		.room-head-number{ width: 35px; text-align: center; }
 		.room-head-title{ font-weight: bold; width: 505px; }
-		.room-head-mode{ margin-right: 5px; width: 255px; text-align: right; }
+		.room-head-mode{ margin-right: 5px; width: 255px; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 		.room-head-limit{ width: 70px; text-align: center; }
 		.room-head-round{ width: 70px; text-align: center; }
 		.room-head-time{ width: 54px; text-align: center; }

@@ -279,7 +279,7 @@ iframe{
 		.room-head-modified{ animation: ModifiedBlink 1s ease 3; }
 		.room-head-number{ width: 35px; text-align: center; }
 		.room-head-title{ display: none; }
-		.room-head-mode{ margin-right: 5px; width: calc(100% - 170px); text-align: center; }
+		.room-head-mode{ margin-right: 5px; width: calc(100% - 170px); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 		.room-head-limit{ width: 35px; text-align: center; }
 		.room-head-round{ width: 60px; text-align: center; }
 		.room-head-time{ width: 35px; text-align: center; }
