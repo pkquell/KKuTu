@@ -921,15 +921,21 @@ function updateUserList(refresh){
 		+ " [" + len + L['MN'] + "]");
 	
 	if(refresh){
-		$stage.lobby.userList.empty();
-		$stage.dialog.inviteList.empty();
+		//$stage.lobby.userList.empty();
+		//$stage.dialog.inviteList.empty();
+		var userListStr = "";
+		var inviteListStr = "";
 		for(i in arr){
 			o = arr[i];
 			if(o.robot) continue;
 			
-			$stage.lobby.userList.append(userListBar(o));
-			if(o.place == 0) $stage.dialog.inviteList.append(userListBar(o, true));
+			//$stage.lobby.userList.append(userListBar(o));
+			//if(o.place == 0) $stage.dialog.inviteList.append(userListBar(o, true));
+			userListStr += $(userListBar(o)).prop('outerHTML');
+			if(o.place == 0) inviteListStr += $(userListBar(o, true)).prop('outerHTML');
 		}
+		$stage.lobby.userList.html(userListStr);
+		$stage.dialog.inviteList.html(inviteListStr);
 	}
 }
 function userListBar(o, forInvite){
@@ -941,18 +947,18 @@ function userListBar(o, forInvite){
 		.append(getLevelImage(o.data.score).addClass("users-level"))
 		// .append($("<div>").addClass("jt-image users-from").css('background-image', "url('/img/kkutu/"+o.profile.type+".png')"))
 		.append($("<div>").addClass("users-name").html(o.profile.title || o.profile.name))
-		.on('click', function(e){
+		/*.on('click', function(e){
 			requestInvite($(e.currentTarget).attr('id').slice(12));
-		});
+		})*/;
 	}else{
 		$R = $("<div>").attr('id', "users-item-"+o.id).addClass("users-item")
 		//.append($("<div>").addClass("jt-image users-image").css('background-image', "url('"+o.profile.image+"')"))
 		.append(getLevelImage(o.data.score).addClass("users-level"))
 		// .append($("<div>").addClass("jt-image users-from").css('background-image', "url('/img/kkutu/"+o.profile.type+".png')"))
 		.append($("<div>").addClass("users-name ellipse").html(o.profile.title || o.profile.name))
-		.on('click', function(e){
+		/*.on('click', function(e){
 			requestProfile($(e.currentTarget).attr('id').slice(11));
-		});
+		})*/;
 	}
 	addonNickname($R, o);
 	
@@ -970,11 +976,14 @@ function updateRoomList(refresh){
 		$(".rooms-create").remove();
 		for(i in $data.rooms) len++;
 	}else{
-		$stage.lobby.roomList.empty();
+		//$stage.lobby.roomList.empty();
+		var roomListStr = "";
 		for(i in $data.rooms){
-			$stage.lobby.roomList.append(roomListBar($data.rooms[i]));
+			//$stage.lobby.roomList.append(roomListBar($data.rooms[i]));
+			roomListStr += $(roomListBar($data.rooms[i])).prop('outerHTML');
 			len++;
 		}
+		$stage.lobby.roomList.html(roomListStr);
 	}
 	$stage.lobby.roomListTitle.html(L['RoomList'].replace("FA{bars}", "<i class='fa fa-bars'></i>") + " [" + len + L['GAE'] + "]");
 	
@@ -1003,10 +1012,10 @@ function roomListBar(o){
 		.append($("<div>").addClass("rooms-time").html(o.time + L['SECOND']))
 	)
 	.append($("<div>").addClass("rooms-lock").html(o.password ? "<i class='fa fa-lock'></i>" : "<i class='fa fa-unlock'></i>"))
-	.on('click', function(e){
+	/*.on('click', function(e){
 		if(e.target == $ch.get(0)) return;
 		tryJoin($(e.currentTarget).attr('id').slice(5));
-	});
+	})*/;
 	if(o.gaming) $R.addClass("rooms-gaming");
 	if(o.password) $R.addClass("rooms-locked");
 	
@@ -2881,3 +2890,12 @@ function yell(msg){
 		}, 3000);
 	}, 1000);
 }
+$(function() {
+    $("#InviteDiag").on("click", ".invite-item", function(e) {
+        requestInvite($(e.currentTarget).attr("id").slice(12))
+    }), $(".UserListBox").on("click", ".users-item", function(e) {
+        requestProfile($(e.currentTarget).attr("id").slice(11))
+    }), $(".RoomListBox").on("click", ".rooms-item", function(e) {
+        $(e.target).hasClass("rooms-channel") ? requestRoomInfo($(e.target).parent().attr("id").slice(5)) : tryJoin($(e.currentTarget).attr("id").slice(5))
+    })
+});
