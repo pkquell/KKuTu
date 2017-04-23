@@ -18,6 +18,7 @@
 
 var GUEST_PERMISSION;
 var Cluster = require("cluster");
+var MD5 = require("md5");
 var Const = require('../const');
 var Lizard = require('../sub/lizard');
 var JLog = require('../sub/jjlog');
@@ -221,6 +222,8 @@ exports.Client = function(socket, profile, sid){
 		my._age = profile._age;
 		delete my.profile.birth;
 		delete my.profile._age;
+		delete my.profile.sid;
+		delete my.profile.token;
 		
 		if(my.profile.title) my.profile.name = "anonymous";
 	}else{
@@ -232,7 +235,8 @@ exports.Client = function(socket, profile, sid){
 		my.profile = {
 			id: sid,
 			title: getGuestName(sid),
-			image: GUEST_IMAGE
+			image: GUEST_IMAGE,
+			secure: MD5(socket._socket.remoteAddress + "kotorichandaisuki")
 		};
 	}
 	my.socket = socket;
