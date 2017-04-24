@@ -25,6 +25,7 @@ var Parser	 = require("body-parser");
 var DDDoS	 = require("dddos");
 var Server	 = Express();
 var DB		 = require("./db");
+var Crypto	 = require("../sub/crypto");
 var JAuth	 = require("../sub/jauth");
 var JLog	 = require("../sub/jjlog");
 var WebInit	 = require("../sub/webinit");
@@ -199,6 +200,7 @@ Server.get("/", function(req, res){
 		page(req, res, Const.MAIN_PORTS[server] ? "kkutu" : "portal", {
 			'_page': "kkutu",
 			'_id': id,
+			'_crypted': Crypto.encrypt(id, GLOBAL.CRYPTO_KEY),//토큰 암호화
 			'PORT': Const.MAIN_PORTS[server],
 			'HOST': req.hostname,
 			'TEST': req.query.test,
