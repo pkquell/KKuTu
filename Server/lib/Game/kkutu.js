@@ -18,7 +18,6 @@
 
 var GUEST_PERMISSION;
 var Cluster = require("cluster");
-var MD5 = require("md5");
 var Const = require('../const');
 var Lizard = require('../sub/lizard');
 var JLog = require('../sub/jjlog');
@@ -235,8 +234,7 @@ exports.Client = function(socket, profile, sid){
 		my.profile = {
 			id: sid,
 			title: getGuestName(sid),
-			image: GUEST_IMAGE,
-			secure: MD5(socket._socket.remoteAddress + "kotorichandaisuki")
+			image: GUEST_IMAGE
 		};
 	}
 	my.socket = socket;
@@ -1471,6 +1469,10 @@ function getRewards(mode, score, bonus, rank, all, ss){
 	rw.score += bonus;
 	rw.score = rw.score || 0;
 	rw.money = rw.money || 0;
+	
+	// 2배 이벤트
+	//rw.score = rw.score * 2;
+	//rw.money = rw.money * 2;
 	
 	// applyEquipOptions에서 반올림한다.
 	return rw;

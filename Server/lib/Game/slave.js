@@ -17,7 +17,6 @@
  */
 
 var WebSocket = require('ws');
-var MD5 = require("md5");
 var File = require('fs');
 var Const = require("../const");
 var Server = new WebSocket.Server({
@@ -26,6 +25,7 @@ var Server = new WebSocket.Server({
 });
 var Master = require('./master');
 var KKuTu = require('./kkutu');
+var Crypto = require("../sub/crypto");
 var Lizard = require('../sub/lizard');
 var MainDB = require('../Web/db');
 var JLog = require('../sub/jjlog');
@@ -92,8 +92,20 @@ MainDB.ready = function(){
 	KKuTu.init(MainDB, DIC, ROOM, GUEST_PERMISSION);
 };
 Server.on('connection', function(socket){
-	var chunk = socket.upgradeReq.url.slice(1).split('&');
-	var key = chunk[0];
+	var chunk = socket.upgradeReq.url.slice(1).split('&')
+	var key;
+	// 토큰 복호화
+	try{
+		key = Crypto.decrypt(chunk[0], GLOBAL.CRYPTO_KEY);
+	}catch (exception){
+		key = ".";
+	}
+	// 토큰 값 검사
+	var pattern = /^[0-9a-zA-Z_-]{32}$/;
+	if(!pattern.test(key)){
+		socket.close();
+		return;
+	}
 	var reserve = RESERVED[key] || {}, room;
 	var $c;
 	
@@ -122,11 +134,6 @@ Server.on('connection', function(socket){
 		$c = new KKuTu.Client(socket, $body ? $body.profile : null, key);
 		$c.admin = GLOBAL.ADMIN.indexOf($c.id) != -1;
 		
-		if(DIC[$c.id] && $c.guest && $c.profile.secure != MD5(DIC[$c.id].socket._socket.remoteAddress + "kotorichandaisuki")){
-			$c.sendError(400);
-			$c.socket.close();
-			return;
-		}
 		if(DIC[$c.id]){
 			DIC[$c.id].send('error', { code: 408 });
 			DIC[$c.id].socket.close();
