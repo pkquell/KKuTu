@@ -17,6 +17,7 @@
  */
 
 var WebSocket = require('ws');
+var MD5 = require("md5");
 var File = require('fs');
 var Const = require("../const");
 var Server = new WebSocket.Server({
@@ -121,6 +122,11 @@ Server.on('connection', function(socket){
 		$c = new KKuTu.Client(socket, $body ? $body.profile : null, key);
 		$c.admin = GLOBAL.ADMIN.indexOf($c.id) != -1;
 		
+		if(DIC[$c.id] && $c.guest && $c.profile.secure != MD5(DIC[$c.id].socket._socket.remoteAddress + "kotorichandaisuki")){
+			$c.sendError(400);
+			$c.socket.close();
+			return;
+		}
 		if(DIC[$c.id]){
 			DIC[$c.id].send('error', { code: 408 });
 			DIC[$c.id].socket.close();
