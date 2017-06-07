@@ -333,8 +333,8 @@ exports.init = function(_SID, CHAN){
 					return;
 				}
 				if($c.guest){
-					if(SID == "0"){
-						$c.sendError(402);
+					if(SID != "0"){
+						$c.sendError(456);
 						$c.socket.close();
 						return;
 					}
@@ -343,6 +343,12 @@ exports.init = function(_SID, CHAN){
 						$c.socket.close();
 						return;
 					}*/
+				} else {
+					if(SID == "0"){
+						$c.sendError(457);
+						$c.socket.close();
+						return;
+					}
 				}
 				/*if($c.isAjae === null){
 					$c.sendError(441);
