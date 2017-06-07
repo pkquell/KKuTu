@@ -39,7 +39,7 @@
 			
 			for(i=0.9; i<1; i+=0.01){
 				for(j in LIST){
-					if(j == 0 && $("#account-info").html() == L['LOGIN']) continue;
+					if(j == 0 && $("#account-info").html() != L['LOGIN']) continue;
 					if(LIST[j] < i * LIMIT){
 						return $("#server-" + j).trigger('click');
 					}
