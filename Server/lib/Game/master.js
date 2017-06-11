@@ -344,7 +344,7 @@ exports.init = function(_SID, CHAN){
 						return;
 					}*/
 				} else {
-					if(SID == "0"){
+					if(SID == "0" && !$c.admin){
 						$c.sendError(457);
 						$c.socket.close();
 						return;
