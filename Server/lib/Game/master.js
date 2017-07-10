@@ -333,22 +333,11 @@ exports.init = function(_SID, CHAN){
 					return;
 				}
 				if($c.guest){
-					if(SID != "0"){
-						$c.sendError(456);
-						$c.socket.close();
-						return;
-					}
 					/*if(KKuTu.NIGHT){
 						$c.sendError(440);
 						$c.socket.close();
 						return;
 					}*/
-				} else {
-					if(SID == "0" && !$c.admin){
-						$c.sendError(457);
-						$c.socket.close();
-						return;
-					}
 				}
 				/*if($c.isAjae === null){
 					$c.sendError(441);
@@ -356,6 +345,60 @@ exports.init = function(_SID, CHAN){
 					return;
 				}*/
 				$c.refresh().then(function(ref){
+					// 손님 서버
+					if(!$c.admin && (SID == "0" || SID == "1" || SID == "2")){
+						//회원
+						if(!$c.guest){
+							$c.sendError(456);
+							$c.socket.close();
+							return;
+						}
+					}
+					// 초보 서버 (1~49)
+					else if(!$c.admin && (SID == "3" || SID == "4" || SID == "5")){
+						//손님
+						if($c.guest){
+							$c.sendError(457);
+							$c.socket.close();
+							return;
+						}
+						//50이상
+						if($c.data.score >= 45175){
+							$c.sendError(458);
+							$c.socket.close();
+							return;
+						}
+					}
+					// 중수 서버 (50~99)
+					else if(!$c.admin && (SID == "6" || SID == "7")){
+						//손님
+						if($c.guest){
+							$c.sendError(457);
+							$c.socket.close();
+							return;
+						}
+						//50미만 or 100이상
+						if($c.data.score < 45175 || $c.data.score >= 292217){
+							$c.sendError(459);
+							$c.socket.close();
+							return;
+						}
+					}
+					// 고수 서버 (100~)
+					else if(!$c.admin && SID == "8"){
+						//손님
+						if($c.guest){
+							$c.sendError(457);
+							$c.socket.close();
+							return;
+						}
+						//100미만
+						if($c.data.score < 292217){
+							$c.sendError(460);
+							$c.socket.close();
+							return;
+						}
+					}
 					if(ref.result == 200){
 						DIC[$c.id] = $c;
 						DNAME[($c.profile.title || $c.profile.name).replace(/\s/g, "")] = $c.id;
