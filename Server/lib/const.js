@@ -18,7 +18,7 @@
 
 var GLOBAL = require("./sub/global.json");
 
-exports.KKUTU_MAX = 400;
+exports.KKUTU_MAX = 200;
 exports.MAIN_PORTS = GLOBAL.MAIN_PORTS;
 exports.TEST_PORT = 4040;
 exports.CHAT_SPAM_ADD_DELAY = 2500;
