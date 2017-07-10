@@ -18,7 +18,7 @@
 
 (function(){
 	var $stage;
-	var LIMIT = 400;
+	var LIMIT = 200;
 	var LIST;
 	
 	$(document).ready(function(){
@@ -35,7 +35,19 @@
 			'background-size': "200px 200px"
 		});
 		$stage.start.prop('disabled', true).on('click', function(e){
-			var i, j;
+			if($("#account-info").html() == L['LOGIN']){
+				for(var i=0.9; i<1; i+=0.01){
+					for(var j=0; j<2; j++){//0~2
+						if(LIST[j] < i * LIMIT){
+							return $("#server-" + j).trigger('click');
+						}
+					}
+				}
+				return alert(L['error_full']);
+			}else{
+				alert(L['gameStartMsg']);//현재 포털 페이지에서 스코어를 가져올 수 없으므로 수동으로 서버를 선택하게 한다.
+			}
+			/*var i, j;
 			
 			for(i=0.9; i<1; i+=0.01){
 				for(j in LIST){
@@ -45,7 +57,7 @@
 					}
 				}
 			}
-			return alert(L['error_full']);
+			return alert(L['error_full']);*/
 		});
 		$stage.ref.on('click', function(e){
 			if($stage.refi.hasClass("fa-spin")){
