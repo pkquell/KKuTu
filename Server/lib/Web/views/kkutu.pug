@@ -463,9 +463,7 @@ block Middle
 		input#Talk(maxlength=200)
 		button#ChatBtn= L('send')
 	+Product('AD')
-		script(async, src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-		ins.adsbygoogle(style="display:inline-block;width:728px;height:90px", data-ad-client="ca-pub-6586021537633126", data-ad-slot="5863772490")
-		script (adsbygoogle = window.adsbygoogle || []).push({});
+		script(type="text/javascript") (function(cl,i,c,k,m,o,n){m=cl.location.protocol+c;o=cl.referrer;m+='&mon_rf='+encodeURIComponent(o);n='<'+i+' type="text/javascript" src="'+m+'"></'+i+'>';cl.writeln(n);})(document,'script','//tab2.clickmon.co.kr/pop/wp_ad_728_js.php?PopAd=CM_M_1003067%7C%5E%7CCM_A_1034484%7C%5E%7CAdver_M_1003115&rt_ad_id_code=RTA_104906');
 
 block Bottom
 	div.bottom-legal!= L('Copyright')
