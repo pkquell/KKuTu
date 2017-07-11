@@ -37,7 +37,7 @@
 		$stage.start.prop('disabled', true).on('click', function(e){
 			if($("#account-info").html() == L['LOGIN']){
 				for(var i=0.9; i<1; i+=0.01){
-					for(var j=0; j<2; j++){//0~2
+					for(var j=0; j<3; j++){//손님채널 0~3
 						if(LIST[j] < i * LIMIT){
 							return $("#server-" + j).trigger('click');
 						}
