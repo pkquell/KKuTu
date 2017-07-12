@@ -39,19 +39,19 @@
 				switch(data.type){
 					case "guest":
 						connectServer(0, 3);
-					break;
+						break;
 					case "newbie":
-						connectServer(4, 7);
-					break;
+						connectServer(4, LIST.length - 1);
+						break;
 					case "user":
-						//50미만
-						if(data.kkutu.score < 45175){
-							connectServer(4, 7);
-						//50이상
+						// 30 레벨 미만
+						if(data.kkutu.score < 12032){
+							connectServer(4, LIST.length - 1);
+						// 30 레벨 이상
 						}else{
-							connectServer(8, 9);
+							connectServer(7, LIST.length - 1);
 						}
-					break;
+						break;
 				}
 			});
 		});
