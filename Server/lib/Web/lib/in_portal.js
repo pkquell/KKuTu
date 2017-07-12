@@ -35,29 +35,25 @@
 			'background-size': "200px 200px"
 		});
 		$stage.start.prop('disabled', true).on('click', function(e){
-			if($("#account-info").html() == L['LOGIN']){
-				for(var i=0.9; i<1; i+=0.01){
-					for(var j=0; j<3; j++){//손님채널 0~3
-						if(LIST[j] < i * LIMIT){
-							return $("#server-" + j).trigger('click');
+			$.get("/user", function(data){
+				switch(data.type){
+					case "guest":
+						connectServer(0, 3);
+					break;
+					case "newbie":
+						connectServer(4, 7);
+					break;
+					case "user":
+						//50미만
+						if(data.kkutu.score < 45175){
+							connectServer(4, 7);
+						//50이상
+						}else{
+							connectServer(8, 9);
 						}
-					}
+					break;
 				}
-				return alert(L['error_full']);
-			}else{
-				alert(L['gameStartMsg']);//현재 포털 페이지에서 스코어를 가져올 수 없으므로 수동으로 서버를 선택하게 한다.
-			}
-			/*var i, j;
-			
-			for(i=0.9; i<1; i+=0.01){
-				for(j in LIST){
-					if(j == 0 && $("#account-info").html() != L['LOGIN']) continue;
-					if(LIST[j] < i * LIMIT){
-						return $("#server-" + j).trigger('click');
-					}
-				}
-			}
-			return alert(L['error_full']);*/
+			});
 		});
 		$stage.ref.on('click', function(e){
 			if($stage.refi.hasClass("fa-spin")){
@@ -71,6 +67,16 @@
 		}, 60000);
 		seekServers();
 	});
+	function connectServer(start, end){
+		for(var i=0.9; i<1; i+=0.01){
+			for(var j=start; j<=end; j++){
+				if(LIST[j] < i * LIMIT){
+					return $("#server-" + j).trigger('click');
+				}
+			}
+		}
+		return alert(L['error_full']);
+	}
 	function seekServers(){
 		$.get("/servers", function(data){
 			var sum = 0;
