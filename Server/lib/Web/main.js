@@ -300,18 +300,6 @@ Server.post("/session", function(req, res){
 	else o = { error: 404 };
 	res.json(o);
 });
-Server.get("/user", function(req, res){
-	if(!req.session.profile){
-		return res.send({ type: "guest" });
-	}
-	DB.users.findOne([ '_id', req.session.profile.id ]).limit([ 'kkutu', true ]).on(function($body){
-		if(!$body){
-			res.send({ type: "newbie" });
-		}else{
-			res.send({ type: "user", kkutu: $body.kkutu });
-		}
-	});
-});
 Server.get("/legal/:page", function(req, res){
 	page(req, res, "legal/"+req.params.page);
 });
