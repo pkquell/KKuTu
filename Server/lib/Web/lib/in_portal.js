@@ -35,25 +35,11 @@
 			'background-size': "200px 200px"
 		});
 		$stage.start.prop('disabled', true).on('click', function(e){
-			$.get("/user", function(data){
-				switch(data.type){
-					case "guest":
-						connectServer(0, 3);
-						break;
-					case "newbie":
-						connectServer(4, LIST.length - 1);
-						break;
-					case "user":
-						// 30 레벨 미만
-						if(data.kkutu.score < 12032){
-							connectServer(4, LIST.length - 1);
-						// 30 레벨 이상
-						}else{
-							connectServer(7, LIST.length - 1);
-						}
-						break;
-				}
-			});
+			if($("#account-info").html() == L['LOGIN']){
+				connectServer(0, 4);
+			}else{
+				connectServer(5, LIST.length - 1);
+			}
 		});
 		$stage.ref.on('click', function(e){
 			if($stage.refi.hasClass("fa-spin")){
