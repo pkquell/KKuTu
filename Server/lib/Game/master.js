@@ -20,6 +20,7 @@ var Cluster = require("cluster");
 var File = require('fs');
 var WebSocket = require('ws');
 // var Heapdump = require("heapdump");
+var geoip = require('geoip-lite');
 var KKuTu = require('./kkutu');
 var Crypto = require("../sub/crypto");
 var GLOBAL = require("../sub/global.json");
@@ -320,6 +321,28 @@ exports.init = function(_SID, CHAN){
 				return;
 			}
 			MainDB.session.findOne([ '_id', key ]).limit([ 'profile', true ]).on(function($body){
+				// 손님 서버 (회원 접속 차단)
+				if(SID <= 4){
+					// 회원 차단
+					if($body && GLOBAL.ADMIN.indexOf($body.profile.id) == -1){
+						socket.send(`{ "type": "error", "code": "456" }`);
+						socket.close();
+						return;
+					}
+					// 해외 IP 차단
+					var geoip_result = geoip.lookup(socket._socket.remoteAddress);
+					if(geoip_result != null && geoip_result.country != "KR"){
+						socket.send(`{ "type": "error", "code": "458" }`);
+						socket.close();
+						return;
+					}
+				// 회원 서버 (손님 접속 차단)
+				}else if(SID >= 5 && !$body){
+					socket.send(`{ "type": "error", "code": "457" }`);
+					socket.close();
+					return;
+				}
+				
 				$c = new KKuTu.Client(socket, $body ? $body.profile : null, key);
 				$c.admin = GLOBAL.ADMIN.indexOf($c.id) != -1;
 				
@@ -345,17 +368,6 @@ exports.init = function(_SID, CHAN){
 					return;
 				}*/
 				$c.refresh().then(function(ref){
-					// 손님 서버 (회원 접속 차단)
-					if(!$c.admin && !$c.guest && SID <= 4){
-						$c.sendError(456);
-						$c.socket.close();
-						return;
-					// 회원 서버 (손님 접속 차단)
-					}else if(!$c.admin && $c.guest && SID >= 5){
-						$c.sendError(457);
-						$c.socket.close();
-						return;
-					}
 					if(ref.result == 200){
 						DIC[$c.id] = $c;
 						DNAME[($c.profile.title || $c.profile.name).replace(/\s/g, "")] = $c.id;
@@ -377,7 +389,7 @@ exports.init = function(_SID, CHAN){
 						narrateFriends($c.id, $c.friends, "on");
 						KKuTu.publish('conn', { user: $c.getData() });
 						
-						JLog.info("New user #" + $c.id);
+						JLog.info("New user #" + $c.id + "(" + $c.socket._socket.remoteAddress + ")");
 					}else{
 						$c.send('error', {
 							code: ref.result, message: ref.black
