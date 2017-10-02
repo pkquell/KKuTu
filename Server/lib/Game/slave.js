@@ -154,7 +154,7 @@ Server.on('connection', function(socket){
 				}else{ // 입장 실패
 					$c.socket.close();
 				}
-				JLog.info(`Chan @${CHAN} New #${$c.id}`);
+				JLog.info(`Chan @${CHAN} New #${$c.id}(${$c.socket._socket.remoteAddress})`);
 			}else{
 				$c.send('error', {
 					code: ref.result, message: ref.black
